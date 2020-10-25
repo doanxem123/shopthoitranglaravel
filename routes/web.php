@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//frontend 
+//frontend
 
 Route::get('/','HomeController@index' );
-
 Route::get('/trang-chu','HomeController@index' );
 
 //backend
-Route::get('/Admin','AdminController@index' );
-Route::get('/Dashboard','AdminController@showdashboard' );
+Route::get('/admin','AdminController@index' );
+Route::get('/dashboard','AdminController@showdashboard' );
+Route::get('/logout','AdminController@logout' );
+Route::post('/admin-dashboard','AdminController@dashboard' );
+
+//Category Product
+Route::get('/add-category-prodcut','CategoryProductController@add_category_product' );
+Route::get('/all-category-prodcut','CategoryProductController@all_category_product' );

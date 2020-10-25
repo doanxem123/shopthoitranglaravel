@@ -67,199 +67,18 @@
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						<li class="grey dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-tasks"></i>
-								<span class="badge badge-grey">4</span>
-							</a>
-
-							
-						</li>
-
-						<li class="purple dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									8 Notifications
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-													<span class="pull-right badge badge-info">+12</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<i class="btn btn-xs btn-primary fa fa-user"></i>
-												Bob just signed up as an editor ...
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-													<span class="pull-right badge badge-success">+8</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-													<span class="pull-right badge badge-info">+11</span>
-												</div>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="#">
-										See all notifications
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="green dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-envelope-o"></i>
-									5 Messages
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar">
-										<li>
-											<a href="#" class="clearfix">
-												<img src="{{asset('public/backend/images/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="{{asset('public/backend/images/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="{{asset('public/backend/imagesavatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="{{asset('public/backend/images/avatar2.png')}}" class="msg-photo" alt="Kate's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="{{asset('public/backend/images/avatars/avatar5.png')}}" class="msg-photo" alt="Fred's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="inbox.html">
-										See all messages
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="{{asset('public/backend/images/avatars/user.jpg')}}" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Chào mừng,</small>
-									kiên
+										<?php
+                                                    $admin_name = Session::get('admin_name');
+                                                    if($admin_name){
+                                                        echo '<span>',$admin_name,'</span>';
+                                                        Session::put('admin_name',null);
+                                                    }
+                                                    ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -269,21 +88,21 @@
 								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Cài đặt 
+										Cài đặt
 									</a>
 								</li>
 
 								<li>
 									<a href="profile.html">
 										<i class="ace-icon fa fa-user"></i>
-										thông tin
+										Thông tin
 									</a>
 								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="{{ URL::to('/logout') }}">
 										<i class="ace-icon fa fa-power-off"></i>
 										Đăng xuất
 									</a>
@@ -337,12 +156,40 @@
 
 				<ul class="nav nav-list">
 					<li class="active">
-						<a href="{{URL::to('/Dashboard')}}">
+						<a href="{{URL::to('/dashboard')}}">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Bảng tin </span>
 						</a>
 
 						<b class="arrow"></b>
+					</li>
+
+					<li class="active" >
+						<a href="#" class="dropdown-toggle">
+							<span class="menu-text"> Danh mục sản phẩm </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="{{URL::to('/add-category-product')}}">
+									Thêm danh mục sản phẩm
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="{{URL::to('/all-category-product')}}">
+									Liệt kê danh mục sản phẩm
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
 					</li>
 				</ul><!-- /.nav-list -->
 
@@ -450,7 +297,11 @@
 							</h1>
 						</div><!-- /.page-header -->
 
-
+<div>
+	<section class="wrapper">
+		@yield('admin_content')
+	</section>
+</div>
 
 			<div class="footer">
 				<div class="footer-inner">
@@ -533,7 +384,7 @@
 						size: size
 					});
 				})
-			
+
 				$('.sparkline').each(function(){
 					var $box = $(this).closest('.infobox');
 					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
@@ -545,12 +396,12 @@
 										chartRangeMin:$(this).data('min') || 0
 									 });
 				});
-			
-			
+
+
 			  //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
 			  //but sometimes it brings up errors with normal resize event handlers
 			  $.resize.throttleWindow = false;
-			
+
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
 			  var data = [
 				{ label: "social networks",  data: 38.7, color: "#68BC31"},
@@ -577,7 +428,7 @@
 					},
 					legend: {
 						show: true,
-						position: position || "ne", 
+						position: position || "ne",
 						labelBoxBorderColor: null,
 						margin:[-30,15]
 					}
@@ -589,19 +440,19 @@
 				 })
 			 }
 			 drawPieChart(placeholder, data);
-			
+
 			 /**
 			 we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
 			 so that's not needed actually.
 			 */
 			 placeholder.data('chart', data);
 			 placeholder.data('draw', drawPieChart);
-			
-			
+
+
 			  //pie chart tooltip example
 			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
 			  var previousPoint = null;
-			
+
 			  placeholder.on('plothover', function (event, pos, item) {
 				if(item) {
 					if (previousPoint != item.seriesIndex) {
@@ -614,33 +465,33 @@
 					$tooltip.hide();
 					previousPoint = null;
 				}
-				
+
 			 });
-			
+
 				/////////////////////////////////////
 				$(document).one('ajaxloadstart.page', function(e) {
 					$tooltip.remove();
 				});
-			
-			
-			
-			
+
+
+
+
 				var d1 = [];
 				for (var i = 0; i < Math.PI * 2; i += 0.5) {
 					d1.push([i, Math.sin(i)]);
 				}
-			
+
 				var d2 = [];
 				for (var i = 0; i < Math.PI * 2; i += 0.5) {
 					d2.push([i, Math.cos(i)]);
 				}
-			
+
 				var d3 = [];
 				for (var i = 0; i < Math.PI * 2; i += 0.2) {
 					d3.push([i, Math.tan(i)]);
 				}
-				
-			
+
+
 				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
 				$.plot("#sales-charts", [
 					{ label: "Domains", data: d1 },
@@ -668,28 +519,28 @@
 						borderColor:'#555'
 					}
 				});
-			
-			
+
+
 				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
 				function tooltip_placement(context, source) {
 					var $source = $(source);
 					var $parent = $source.closest('.tab-content')
 					var off1 = $parent.offset();
 					var w1 = $parent.width();
-			
+
 					var off2 = $source.offset();
 					//var w2 = $source.width();
-			
+
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-			
-			
+
+
 				$('.dialogs,.comments').ace_scroll({
 					size: 300
 			    });
-				
-				
+
+
 				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
 				//so disable dragging when clicking on label
 				var agent = navigator.userAgent.toLowerCase();
@@ -701,7 +552,7 @@
 					if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
 				  });
 				}
-			
+
 				$('#tasks').sortable({
 					opacity:0.8,
 					revert:true,
@@ -720,18 +571,18 @@
 					if(this.checked) $(this).closest('li').addClass('selected');
 					else $(this).closest('li').removeClass('selected');
 				});
-			
-			
+
+
 				//show the dropdowns on top or bottom depending on window height and menu position
 				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
 					var offset = $(this).offset();
-			
+
 					var $w = $(window)
-					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100)
 						$(this).addClass('dropup');
 					else $(this).removeClass('dropup');
 				});
-			
+
 			})
 		</script>
 	</body>

@@ -62,23 +62,31 @@
 
 											<div class="space-6"></div>
 
-											<form>
+											<form action="{{ URL::to('/admin-dashboard') }}" method="POST">
+												{{ csrf_field() }}
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Tài khoản" />
+															<input type="text" name="admin_email" class="form-control" placeholder="Tài khoản" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Mật khẩu" />
+															<input type="password" name="admin_password" class="form-control" placeholder="Mật khẩu" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
 
-													<div class="space"></div>
+
+                                                    <?php
+                                                    $message = Session::get('message');
+                                                    if($message){
+                                                        echo '<div class="alert alert-warning red">',$message,'</div>';
+                                                        Session::put('message',null);
+                                                    }
+                                                    ?>
 
 													<div class="clearfix">
 														<label class="inline">
@@ -86,7 +94,7 @@
 															<span class="lbl"> nhớ mật khẩu</span>
 														</label>
 
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Đăng nhập</span>
 														</button>
@@ -220,7 +228,7 @@
 													<label class="block">
 														<input type="checkbox" class="ace" />
 														<span class="lbl">
-															Chấp nhận 
+															Chấp nhận
 															<a href="#">Thỏa thuận</a>
 														</span>
 													</label>
@@ -275,14 +283,14 @@
 
 		<!-- basic scripts -->
 
-		<--[if !IE]> -->
+		<!--[if !IE]> -->
 		<script src="{{asset('public/backend/js/jquery-2.1.4.min.js')}}"></script>
 
 		<!-- <![endif]-->
 
 ')}}		<!--[if IE]>
 <script src="asset/js/jquery-1.11.3.min.js"></script>
-<![endif]-->		
+<![endif]-->
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -294,33 +302,33 @@
 				$(target).addClass('visible');//show target
 			 });
 			});
-			
-			
-			
+
+
+
 			//you don't need this, just used for changing background
 			jQuery(function($) {
 			 $('#btn-login-dark').on('click', function(e) {
 				$('body').attr('class', 'login-layout');
 				$('#id-text2').attr('class', 'white');
 				$('#id-company-text').attr('class', 'blue');
-				
+
 				e.preventDefault();
 			 });
 			 $('#btn-login-light').on('click', function(e) {
 				$('body').attr('class', 'login-layout light-login');
 				$('#id-text2').attr('class', 'grey');
 				$('#id-company-text').attr('class', 'blue');
-				
+
 				e.preventDefault();
 			 });
 			 $('#btn-login-blur').on('click', function(e) {
 				$('body').attr('class', 'login-layout blur-login');
 				$('#id-text2').attr('class', 'white');
 				$('#id-company-text').attr('class', 'light-blue');
-				
+
 				e.preventDefault();
 			 });
-			 
+
 			});
 		</script>
 	</body>

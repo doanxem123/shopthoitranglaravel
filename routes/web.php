@@ -24,5 +24,5 @@ Route::get('/logout','AdminController@logout' );
 Route::post('/admin-dashboard','AdminController@dashboard' );
 
 //Category Product
-Route::get('/add-category-prodcut','CategoryProductController@add_category_product' );
-Route::get('/all-category-prodcut','CategoryProductController@all_category_product' );
+Route::get('/add-category-product','CategoryProductController@add_category_product' );
+Route::get('/all-category-product','CategoryProductController@all_category_product' );

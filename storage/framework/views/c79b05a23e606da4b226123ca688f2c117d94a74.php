@@ -174,7 +174,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="#" class="dropdown-toggle">
+								<a href="<?php echo e(URL::to('/add-category-product')); ?>">
 									Thêm danh mục sản phẩm
 								</a>
 
@@ -182,7 +182,7 @@
 							</li>
 
 							<li class="">
-								<a href="#" class="dropdown-toggle">
+								<a href="<?php echo e(URL::to('/all-category-product')); ?>">
 									Liệt kê danh mục sản phẩm
 								</a>
 

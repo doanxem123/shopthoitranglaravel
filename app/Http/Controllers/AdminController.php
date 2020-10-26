@@ -13,11 +13,13 @@ session_start();
 
 class AdminController extends Controller
 {
+    
     public function index() {
     	return view('admin_login');
     }
 
     public function showdashboard() {
+        //$this->AuthLogin();
     	return view('admin.dashboard');
     }
 

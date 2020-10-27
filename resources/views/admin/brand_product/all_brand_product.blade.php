@@ -8,17 +8,17 @@
             <i class="ace-icon fa fa-home home-icon"></i>
             <a href="{{URL::to('/dashboard')}}">Home</a>
         </li>
-        <li class="active">Danh mục sản phẩm</li>
-        <li class="active">Liệt kê danh mục sản phẩm</li>
+        <li class="active">Thương hiệu sản phẩm</li>
+        <li class="active">Liệt kê thương hiệu sản phẩm</li>
     </ul><!-- /.breadcrumb -->
 </div>
 
 <div class="page-header">
     <h1>
-        Danh mục sản phẩm
+        Thương hiệu sản phẩm
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            Liệt kê danh mục sản phẩm
+            Liệt kê thương hiệu sản phẩm
         </small>
     </h1>
 </div><!-- /.page-header -->
@@ -33,13 +33,13 @@
                         <span class="lbl"></span>
                     </label>
                 </th>
-                <th>Tên danh mục </th>
+                <th>Tên thương hiệu </th>
 
                 <th class="ace-icon fa fa-clock-o bigger-110 "> Ngày thêm</th>
 
                 <th>
                     <i class="ace-icon fa fa-clock-o bigger-110 "></i>
-                    Ngày Cập nhật
+                    Ngày cập nhật
                 </th>
                 <th>Hiển thị</th>
                 <th></th>
@@ -56,7 +56,7 @@
                 </td>
 
                 <td>
-                    <a href="#">Tên danh mục </a>
+                    <a href="#">Tên thương hiệu </a>
                 </td>
                 <td class="hidden-480">Feb 11</td>
                 <td>Feb 12</td>

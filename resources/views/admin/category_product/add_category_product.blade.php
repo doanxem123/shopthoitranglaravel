@@ -23,7 +23,8 @@
 </div><!-- /.page-header -->
 
 <div class="row">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" action="{{URL::to('/save-category-product')}}" method="post">
+    {{csrf_field()}}
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tên danh mục  </label>
 
@@ -49,9 +50,9 @@
         <label class="col-sm-3 control-label no-padding-right" for="form-field-2">Hiển thị</label>
 
         <div class="col-sm-3">
-            <select class="form-control" id="form-field-select-1">
-            <option >Hiển thị</option>
-            <option >Ẩn</option>
+            <select class="form-control" id="form-field-select-1" name= "status">
+            <option value="1" >Hiển thị</option>
+            <option value="0" >Ẩn</option>
             </select>
         </div>
     </div>
@@ -61,9 +62,9 @@
 
     <div class="clearfix form-actions">
         <div class="col-md-offset-3 col-md-9">
-            <button class="btn btn-info" type="button" name="add_category_product">
+            <button class="btn btn-info" type="submit" name="add_category_product">
                 <i class="ace-icon fa fa-check bigger-110"></i>
-                Submit
+                Thêm danh mục sản phẩm
             </button>
         </div>
     </div>

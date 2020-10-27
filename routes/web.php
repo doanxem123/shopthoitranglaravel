@@ -26,6 +26,7 @@ Route::post('/admin-dashboard','AdminController@dashboard' );
 //Category Product
 Route::get('/add-category-product','CategoryProductController@add_category_product' );
 Route::get('/all-category-product','CategoryProductController@all_category_product' );
+Route::post('/save-category-product','CategoryProductController@save_category_product');
 
 //Brand Product
 Route::get('/add-brand-product','BrandProductController@add_brand_product' );

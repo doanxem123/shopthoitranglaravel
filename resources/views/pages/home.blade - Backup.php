@@ -56,37 +56,74 @@
     <div class="content-top">
         <h1>Danh mục sản phẩm</h1>
         <div class="grid-in">
-            @foreach($category as $key => $item)
+            @foreach($product as $key => $item)
             <div class="col-md-4 grid-top">
-                <a href="{{URL::to('/show-filter-product/category='.$item->category_id.'&brand=all')}}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{URL::to('public/frontend/images/menu/'.$item->category_image)}}" alt="" style="height: 357px;">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{URL::to('public/frontend/images/demo/'.$item->product_image)}}" alt="" style="height: 357px;">
                             <div class="b-wrapper">
                                     <h3 class="b-animate b-from-left    b-delay03 ">
-                                        <span>{{$item->category_name}}</span>
+                                        <span>{{$item->product_name}}</span>
                                     </h3>
                                 </div>
                 </a>
-            <p><a href="{{URL::to('/show-filter-product/category='.$item->category_id.'&brand=all')}}">{{$item->category_name}}</a></p>
+            <p><a href="single.html">{{$item->product_name}}</a></p>
             </div>
             @endforeach
+
+            <div class="col-md-4 grid-top">
+                <a href="{{URL::to('/product')}}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{('public/frontend/images/pi1.jpg')}}" alt="">
+                    <div class="b-wrapper">
+                                    <h3 class="b-animate b-from-left    b-delay03 ">
+                                        <span>Shoe</span>   
+                                    </h3>
+                                </div>
+                </a>
+            <p><a href="{{URL::to('/product')}}">classical Latin</a></p>
+            </div>
+            <div class="col-md-4 grid-top">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{('public/frontend/images/pi2.jpg')}}" alt="">
+                    <div class="b-wrapper">
+                                    <h3 class="b-animate b-from-left    b-delay03 ">
+                                        <span>Bag</span>    
+                                    </h3>
+                                </div>
+                </a>
+            <p><a href="single.html">undoubtable</a></p>
+            </div>
+                    <div class="clearfix"> </div>
         </div>
-        <div class="clearfix"> </div>
-        <br>
-        <h1>Thương hiệu sản phẩm</h1>
         <div class="grid-in">
-            @foreach($brand as $key => $item)
             <div class="col-md-4 grid-top">
-                <a href="{{URL::to('/show-filter-product/category=all'.'&brand='.$item->brand_id)}}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{URL::to('public/frontend/images/menu/'.$item->brand_image)}}" alt="" style="height: 357px;">
-                            <div class="b-wrapper">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{('public/frontend/images/pi3.jpg')}}" alt="">
+                    <div class="b-wrapper">
                                     <h3 class="b-animate b-from-left    b-delay03 ">
-                                        <span>{{$item->brand_name}}</span>
+                                        <span>Shirt</span>  
                                     </h3>
                                 </div>
                 </a>
-            <p><a href="{{URL::to('/show-filter-product/category=all'.'&brand='.$item->brand_id)}}">{{$item->brand_name}}</a></p>
+            <p><a href="single.html">suffered alteration</a></p>
             </div>
-            @endforeach
+            <div class="col-md-4 grid-top">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{('public/frontend/images/pi4.jpg')}}" alt="">
+                    <div class="b-wrapper">
+                                    <h3 class="b-animate b-from-left    b-delay03 ">
+                                        <span>Bag</span>    
+                                    </h3>
+                                </div>
+                </a>
+            <p><a href="single.html">Content here</a></p>
+            </div>
+            <div class="col-md-4 grid-top">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="{{('public/frontend/images/pi5.jpg')}}" alt="">
+                    <div class="b-wrapper">
+                                    <h3 class="b-animate b-from-left    b-delay03 ">
+                                        <span>Shoe</span>   
+                                    </h3>
+                                </div>
+                </a>
+            <p><a href="single.html">readable content</a></p>
+            </div>
+                    <div class="clearfix"> </div>
         </div>
-        <div class="clearfix"> </div>
     </div>
     <!----->
     

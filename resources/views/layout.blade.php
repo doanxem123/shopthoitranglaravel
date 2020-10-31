@@ -40,8 +40,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="header-left">       
                     <ul>
-                        <li ><a href="login.html"  >Login</a></li>
-                        <li><a  href="register.html"  >Register</a></li>
+                        <li ><a href="login.html"  >Đăng nhập</a></li>
+                        <li><a  href="register.html"  >Đăng ký</a></li>
 
                     </ul>
                     <div class="cart box_1">
@@ -65,16 +65,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
-                          <li class="active grid"><a class="color8" href="{{URL::to('/trang-chu')}}">Home</a></li> 
-                          <li><a class="color1" href="#">Danh mục sản phẩm</a>
+                          <li class="active grid"><a class="color8" href="{{URL::to('/trang-chu')}}">Trang chủ</a></li> 
+                          <li class="grid"><a class="color1" href="#">Danh mục</a>
                             <div class="mepanel" style="width: 250px;margin-left:100px">
                                 <div class="row">
                                     <div class="col1">
                                         <div class="h_nav">
                                             <ul>
-                                                @foreach($category as $key => $cate)
-                                                <li><a href="#">{{$cate->category_name}}</a></li>
-
+                                                @foreach($category as $key => $item)
+                                                <li><a href="{{URL::to('/show-filter-product/category='.$item->category_id.'&brand=all')}}">{{$item->category_name}}</a></li>
                                                 @endforeach
                                             </ul>  
                                         </div>                          
@@ -83,13 +82,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                         </li>
                         <li class="grid"><a class="color2" href="#">Thương hiệu</a>
-                            <div class="mepanel" style="width: 250px;margin-left:300px">
+                            <div class="mepanel" style="width: 250px;margin-left:250px">
                                 <div class="row">
                                     <div class="col1">
                                         <div class="h_nav">
                                             <ul>
-                                                @foreach($brand as $key => $bra)
-                                                <li><a href="#">{{$bra->brand_name}}</a></li>
+                                                @foreach($brand as $key => $item)
+                                                <li><a href="{{URL::to('/show-filter-product/category=all'.'&brand='.$item->brand_id)}}">{{$item->brand_name}}</a></li>
 
                                                 @endforeach
                                             </ul>   
@@ -108,56 +107,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
 
     </div>
-
-    <div class="banner">
-        <div class="container">
-          <script src="{{('public/frontend/js/responsiveslides.min.js')}}"></script>
-          <script>
-            $(function () {
-              $("#slider").responsiveSlides({
-                auto: true,
-                nav: true,
-                speed: 500,
-                namespace: "callbacks",
-                pager: true,
-            });
-          });
-      </script>
-      <div  id="top" class="callbacks_container">
-        <ul class="rslides" id="slider">
-            <li>
-
-                <div class="banner-text">
-                    <h3>Lorem Ipsum is not simply dummy  </h3>
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor .</p>
-                    <a href="single.html">Learn More</a>
-                </div>
-                
-            </li>
-            <li>
-
-                <div class="banner-text">
-                    <h3>There are many variations </h3>
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor .</p>
-                    <a href="single.html">Learn More</a>
-
-                </div>
-
-            </li>
-            <li>
-                <div class="banner-text">
-                    <h3>Sed ut perspiciatis unde omnis</h3>
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor .</p>
-                    <a href="single.html">Learn More</a>
-
-                </div>
-
-            </li>
-        </ul>
-    </div>
-
-</div>
-</div>
 
 @yield('content')
 
@@ -203,7 +152,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </div>
     <div class="footer-class">
-        <p >© 2015 New store All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+        <p >© Nguyễn Quang Anh - Vũ Trung Kiên</a> </p>
     </div>
 </div>
 </body>

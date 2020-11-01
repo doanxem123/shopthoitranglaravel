@@ -34,19 +34,14 @@
                     </label>
                 </th>
                 <th>Tên danh mục </th>
-
-                <th class="ace-icon fa fa-clock-o bigger-110 "> Ngày thêm</th>
-
-                <th>
-                    <i class="ace-icon fa fa-clock-o bigger-110 "></i>
-                    Ngày Cập nhật
-                </th>
+                <th>Nội dung </th>
                 <th>Hiển thị</th>
                 <th></th>
             </tr>
         </thead>
 
         <tbody>
+             @foreach($all_category_product as $key => $cate_pro)
             <tr>
                 <td class="center">
                     <label class="pos-rel">
@@ -56,15 +51,21 @@
                 </td>
 
                 <td>
-                    <a href="#">Tên danh mục </a>
+                    {{ $cate_pro->category_name }}
                 </td>
-                <td class="hidden-480">Feb 11</td>
-                <td>Feb 12</td>
+                <td> {{ $cate_pro->category_desc}}</td>
                  <td class="left">
-                    <label class="pos-rel">
-                        <input type="checkbox" class="ace" />
-                        <span class="lbl"></span>
-                    </label>
+                    <?php
+               if($cate_pro->category_status==0){
+                ?>
+                <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <?php
+                 }else{
+                ?>
+                 <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <?php
+               }
+              ?>
                 </td>
 
                 <td>
@@ -73,51 +74,36 @@
                             <i class="ace-icon fa fa-search-plus bigger-130"></i>
                         </a>
 
-                        <a class="green" href="#">
+                        <a class="green" href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
 
-                        <a class="red" href="#">
+                        <a onclick="return confirm('Bạn có chắc là muốn xóa danh mục này ko?')" class="red" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}">
                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                         </a>
                     </div>
-
-                    <div class="hidden-md hidden-lg">
-                        <div class="inline pos-rel">
-                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                        <span class="blue">
-                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                        <span class="green">
-                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                        <span class="red">
-                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
+<footer class="panel-footer">
+      <div class="row">
+
+        <div class="col-sm-5 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 @endsection

@@ -26,7 +26,7 @@
   <form class="form-horizontal" role="form" action="{{URL::to('/save-category-product')}}" method="post">
     {{csrf_field()}}
     <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tên danh mục  </label>
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tên thương hiệu  </label>
 
         <div class="col-sm-9">
             <input type="text" id="form-field-1" name="category_product_name" placeholder="Điền danh mục" class="col-xs-10 col-sm-5" />
@@ -39,7 +39,7 @@
         <label class="col-sm-3 control-label no-padding-right" for="form-field-2">Mô tả</label>
 
         <div class="col-sm-9">
-            <textarea name=" category_product_desc" style="resize: none" rows="4" type="text" id="form-field-2" placeholder="Mô tả" class="col-xs-10 col-sm-5">
+            <textarea name=" brand_product_desc" style="resize: none" rows="4" type="text" id="form-field-2" placeholder="Mô tả" class="col-xs-10 col-sm-5">
 
             </textarea >
         </div>

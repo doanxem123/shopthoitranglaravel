@@ -62,7 +62,6 @@ class CategoryProductController extends Controller
       //  $this->AuthLogin();
         $data = array();
         $data['category_name'] = $request->category_product_name;
-        $data['slug_category_product'] = $request->slug_category_product;
         $data['category_desc'] = $request->category_product_desc;
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->update($data);
         Session::put('message','Cập nhật danh mục sản phẩm thành công');

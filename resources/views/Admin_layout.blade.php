@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<!-- Kiểm soát quyền quản trị -->
-	<?php 
+	<?php
 	$admin_id = Session::get('admin_id');
 	if(!$admin_id){
 		return Redirect::to('admin')->send();
@@ -227,6 +227,33 @@
 					</ul>
 
 				</li>
+				<li class="" >
+					<a href="#" class="dropdown-toggle">
+						<span class="menu-text"> Sản phẩm </span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+
+					<b class="arrow"></b>
+
+					<ul class="submenu">
+						<li class="">
+							<a href="{{URL::to('/add-product')}}">
+								Thêm sản phẩm
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+
+						<li class="">
+							<a href="{{URL::to('/all-product')}}">
+								Liệt kê sản phẩm
+							</a>
+
+							<b class="arrow"></b>
+						</li>
+					</ul>
+
+				</li>
 			</ul><!-- /.nav-list -->
 
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -246,7 +273,7 @@
 				<div class="footer-content">
 					<span class="bigger-120">
 						<span class="blue bolder">Quản lý </span>
-						Application &copy; 2013-2014
+						Application &copy;
 					</span>
 
 					&nbsp; &nbsp;

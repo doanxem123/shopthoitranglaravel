@@ -25,28 +25,23 @@
 
 <div>
     <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
+         <tr>
                 <th class="center">
                     <label class="pos-rel">
                         <input type="checkbox" class="ace" />
                         <span class="lbl"></span>
                     </label>
                 </th>
-                <th>Tên thương hiệu </th>
-
-                <th class="ace-icon fa fa-clock-o bigger-110 "> Ngày thêm</th>
-
-                <th>
-                    <i class="ace-icon fa fa-clock-o bigger-110 "></i>
-                    Ngày cập nhật
-                </th>
+                <th>Tên danh mục </th>
+                <th>Nội dung </th>
                 <th>Hiển thị</th>
                 <th></th>
             </tr>
         </thead>
 
+
         <tbody>
+             @foreach($all_brand_product as $key => $brand_pro)
             <tr>
                 <td class="center">
                     <label class="pos-rel">
@@ -54,17 +49,23 @@
                         <span class="lbl"></span>
                     </label>
                 </td>
-
+                  <td>
+                    {{ $brand_pro->brand_name }}
                 <td>
-                    <a href="#">Tên thương hiệu </a>
                 </td>
-                <td class="hidden-480">Feb 11</td>
-                <td>Feb 12</td>
+               <td> {{ $brand_pro->brand_desc}}</td>
                  <td class="left">
-                    <label class="pos-rel">
-                        <input type="checkbox" class="ace" />
-                        <span class="lbl"></span>
-                    </label>
+                     <?php
+               if($brand_pro->brand_status==0){
+                ?>
+                <a href="{{URL::to('/unactive-brand-product'.$brand_pro->brand_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <?php
+                 }else{
+                ?>
+                 <a href="{{URL::to('/active-brand-product/'.$brand_pro->brand_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <?php
+               }
+              ?>
                 </td>
 
                 <td>
@@ -73,51 +74,37 @@
                             <i class="ace-icon fa fa-search-plus bigger-130"></i>
                         </a>
 
-                        <a class="green" href="#">
+                        <a class="green" href="{{URL::to('/edit-brand-product/'.$brand_pro->brand_id)}}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
 
-                        <a class="red" href="#">
+                        <a class="red" href="{{URL::to('/delete-brand-product/'.$brand_pro->brand_id)}}">
                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                         </a>
                     </div>
-
-                    <div class="hidden-md hidden-lg">
-                        <div class="inline pos-rel">
-                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                        <span class="blue">
-                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                        <span class="green">
-                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                        <span class="red">
-                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </td>
             </tr>
+             @endforeach
         </tbody>
     </table>
 </div>
+<footer class="panel-footer">
+      <div class="row">
+
+        <div class="col-sm-5 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 @endsection
+

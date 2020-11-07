@@ -25,7 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="{{asset('public/frontend/css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="{{asset('public/frontend/js/memenu.js')}}"></script>
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
-    <script src="{{asset('js/simpleCart.min.js')}}"> </script>
+    <script src="{{asset('public/frontend/js/simpleCart.min.js')}}"> </script>
 </head>
 <body>
     <!--header-->
@@ -33,9 +33,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="header-top">
             <div class="container">
                 <div class="search">
-                    <form>
-                        <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input type="submit" value="Go">
+                    <form action="{{URL::to('/show-filter-product/search')}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="text" name="search_keywords" placeholder="Tìm kiếm sản phẩm">
+                        <input type="submit" value="Tìm kiếm">
                     </form>
                 </div>
                 <div class="header-left">       
@@ -48,7 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href="checkout.html">
                             <h3> <div class="total">
                                 <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-                                <img src="{{('public/frontend/images/cart.png')}}" alt=""/></h3>
+                                <img src="{{URL::to('public/frontend/images/cart.png')}}" alt=""/></h3>
                             </a>
                             <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
@@ -60,9 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="container">
                 <div class="head-top">
-                    <div class="logo">
-                        <a href="index.html"><img src="{{('public/frontend/images/logo.png')}}" alt=""></a> 
-                    </div>
+                    
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
                           <li class="active grid"><a class="color8" href="{{URL::to('/trang-chu')}}">Trang chủ</a></li> 
@@ -97,8 +96,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                         </li>
-                        <li><a class="color4" href="blog.html">Blog</a></li>                
-                        <li><a class="color6" href="contact.html">Contact</a></li>
                     </ul> 
                 </div>
                 
@@ -113,41 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="footer">
     <div class="container">
         <div class="footer-top-at">
-
-            <div class="col-md-4 amet-sed">
-                <h4>MORE INFO</h4>
-                <ul class="nav-bottom">
-                    <li><a href="#">How to order</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="contact.html">Location</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Membership</a></li> 
-                </ul>   
-            </div>
-            <div class="col-md-4 amet-sed ">
-                <h4>CONTACT US</h4>
-                
-                <p>
-                Contrary to popular belief</p>
-                <p>The standard chunk</p>
-                <p>office:  +12 34 995 0792</p>
-                <ul class="social">
-                    <li><a href="#"><i> </i></a></li>                       
-                    <li><a href="#"><i class="twitter"> </i></a></li>
-                    <li><a href="#"><i class="rss"> </i></a></li>
-                    <li><a href="#"><i class="gmail"> </i></a></li>
-
-                </ul>
-            </div>
-            <div class="col-md-4 amet-sed">
-                <h4>Newsletter</h4>
-                <p>Sign Up to get all news update
-                and promo</p>
-                <form>
-                    <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                    <input type="submit" value="Sign up">
-                </form>
-            </div>
+            <!-- Map -->
             <div class="clearfix"> </div>
         </div>
     </div>

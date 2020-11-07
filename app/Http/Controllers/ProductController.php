@@ -128,28 +128,15 @@ class ProductController extends Controller
         return Redirect::to('all-product');
     }
     //End Admin Page
-    public function details_product($product_slug){
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+    
+    //Front-end
+    public function details_product($product_id){
+        $category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
+        $brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
+        $product = DB::table('tbl_product')->where('product_id',$product_id)->where('product_status','1')->get();
+        $images = DB::table('tbl_images_product')->where('product_id',$product_id)->where('images_status','1')->orderby('product_id','desc')->get();
+        $size=DB::table('tbl_details_product')->join('tbl_size_product','tbl_size_product.size_id','=','tbl_details_product.size_id')->where('product_id',$product_id)->get();
 
-        $details_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_product.product_slug',$product_slug)->get();
-
-        foreach($details_product as $key => $value){
-            $category_id = $value->category_id;
-        }
-
-
-        $related_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-         ->where('tbl_category_product.category_id',$category_id) ->get();
-         // ->whereNotIn('tbl_product.product_slug',[$product_slug])->
-
-
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product);
-
+        return view('pages.product.details_product')->with('category',$category_product)->with('brand',$brand_product)->with('product',$product)->with('images',$images)->with('size',$size);
     }
 }

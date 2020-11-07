@@ -31,13 +31,21 @@ class FilterController extends Controller
 			$filter_by_id = $filter_by_id->where('tbl_product.brand_id',$brandid)->where('brand_status','1')->where('tbl_product.category_id',$categoryid)->where('category_status','1');
 		}
 
-		
-
-
-		$product = DB::table('tbl_product')->where('product_status','1')->orderby('product_id','desc')->paginate(9);
-
 		//Phân trang
 		$filter_by_id=$filter_by_id->paginate(9);
-		return view('pages.filter.filter_product',['filter_by_id' => $filter_by_id])->with('category',$category_product)->with('brand',$brand_product)->with('filter_by_id',$filter_by_id);
+		return view('pages.filter.filter_product',['filter' => $filter_by_id])->with('category',$category_product)->with('brand',$brand_product)->with('search_keywords','');
+	}
+
+	public function search_product(Request $request){
+		$category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
+		$brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
+
+		//Lấy từ khoá search và so sánh trong csdl
+		$search_keywords = $request->search_keywords;
+		$product_by_keywords = DB::table('tbl_product')->where('product_name','like','%'.$search_keywords.'%')->where('product_status','1')->orderby('product_id','desc');
+		$number = $product_by_keywords->count();
+		$product_by_keywords = $product_by_keywords->paginate(9);
+
+		return view('pages.filter.filter_product',['filter' => $product_by_keywords])->with('category',$category_product)->with('brand',$brand_product)->with('search_keywords',$search_keywords)->with('number',$number);
 	}
 }

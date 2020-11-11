@@ -46,64 +46,79 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     </ul>
                     <div class="cart box_1">
-                        <a href="checkout.html">
-                            <h3> <div class="total">
-                                <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-                                <img src="{{URL::to('public/frontend/images/cart.png')}}" alt=""/></h3>
-                            </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                        <a href="{{URL::to('/show-cart')}}">
+                            <h3> 
+                            <div class="total">
+                            <span>
+                                <?php
+                                    $list = Cart::Content();
+                                    $tongtien=0;
+                                    $dem=0;
+                                    foreach($list as $item){
+                                        $tongtien+=$item->price*$item->qty;
+                                        //$dem++;
+                                    }
+                                    $dem=count($list);
+                                ?>
+                                {{number_format($tongtien).' VND'}} ( {{count($list)}} sản phẩm )
+                            </span>
+                            </div>
+                            <img src="{{URL::to('public/frontend/images/cart.png')}}" alt=""/>
+                            </h3>
+                        </a>
+                        <p><a href="{{URL::to('/update-cart/rowId=all&qty=all')}}" class="simpleCart_empty">Empty Cart</a></p>
 
-                        </div>
-                        <div class="clearfix"> </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="head-top">
-                    
-                    <div class=" h_menu4">
-                        <ul class="memenu skyblue">
-                          <li class="active grid"><a class="color8" href="{{URL::to('/trang-chu')}}">Trang chủ</a></li> 
-                          <li class="grid"><a class="color1" href="#">Danh mục</a>
-                            <div class="mepanel" style="width: 250px;margin-left:100px">
-                                <div class="row">
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <ul>
-                                                @foreach($category as $key => $item)
-                                                <li><a href="{{URL::to('/show-filter-product/category='.$item->category_id.'&brand=all')}}">{{$item->category_name}}</a></li>
-                                                @endforeach
-                                            </ul>  
-                                        </div>                          
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="grid"><a class="color2" href="#">Thương hiệu</a>
-                            <div class="mepanel" style="width: 250px;margin-left:250px">
-                                <div class="row">
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <ul>
-                                                @foreach($brand as $key => $item)
-                                                <li><a href="{{URL::to('/show-filter-product/category=all'.'&brand='.$item->brand_id)}}">{{$item->brand_name}}</a></li>
-
-                                                @endforeach
-                                            </ul>   
-                                        </div>                          
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul> 
-                </div>
-                
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <div class="container">
+            <div class="head-top">
 
+                <div class=" h_menu4">
+                    <ul class="memenu skyblue">
+                      <li class="active grid"><a class="color8" href="{{URL::to('/trang-chu')}}">Trang chủ</a></li> 
+                      <li class="grid"><a class="color1" href="#">Danh mục</a>
+                        <div class="mepanel" style="width: 250px;margin-left:100px">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <ul>
+                                            @foreach($category as $key => $item)
+                                            <li><a href="{{URL::to('/show-filter-product/category='.$item->category_id.'&brand=all')}}">{{$item->category_name}}</a></li>
+                                            @endforeach
+                                        </ul>  
+                                    </div>                          
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="grid"><a class="color2" href="#">Thương hiệu</a>
+                        <div class="mepanel" style="width: 250px;margin-left:250px">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <ul>
+                                            @foreach($brand as $key => $item)
+                                            <li><a href="{{URL::to('/show-filter-product/category=all'.'&brand='.$item->brand_id)}}">{{$item->brand_name}}</a></li>
+
+                                            @endforeach
+                                        </ul>   
+                                    </div>                          
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul> 
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
     </div>
+
+</div>
 
 @yield('content')
 

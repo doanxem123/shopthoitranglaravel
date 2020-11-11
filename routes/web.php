@@ -26,6 +26,12 @@ Route::get('/show-filter-product/search','FilterController@search_product' );
 //Product
 Route::get('/product/id={product_id}','ProductController@details_product' );
 
+//Cart
+Route::get('/show-cart','CartController@show_cart' );
+Route::post('/save-cart','CartController@save_cart');
+Route::get('/update-cart/rowId={rowId}&qty={qty}','CartController@update_cart');
+
+
 
 //--backend--
 Route::get('/admin','AdminController@index' );

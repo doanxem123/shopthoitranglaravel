@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use Session;
+use Carbon\Carbon;
 
 session_start();
 class HomeController extends Controller
@@ -55,6 +56,9 @@ class HomeController extends Controller
 		$data_add['account_account'] = $account_account;
 		$data_add['account_password'] = $account_password;
 		$data_add['account_status'] = 1;
+        $data_add['created_at']=Carbon::now();
+        $data_add['updated_at']=Carbon::now();
+
 		DB::table('tbl_account')->insert($data_add);
 
 		$result = DB::table('tbl_account')->join('tbl_permission','tbl_account.permission_id','=','tbl_permission.permission_id')->where('account_account',$account_account)->where('account_password',$account_password)->first();

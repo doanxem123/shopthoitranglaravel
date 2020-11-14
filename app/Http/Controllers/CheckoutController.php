@@ -63,7 +63,13 @@ class CheckoutController extends Controller
             DB::table('tbl_details_invoice')->insert($data_add_details);
         }
 
-        //Cart::destroy();
+        //reset
+        Cart::setGlobalDiscount(0);
+        Session::put('discount_code',null);
+        Session::put('discount_rate',null);
+        Session::put('discount_message',null);
+        Cart::destroy();
+        
         return Redirect::to('/finish-checkout');
     }
 

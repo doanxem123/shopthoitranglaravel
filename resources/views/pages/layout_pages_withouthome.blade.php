@@ -61,7 +61,7 @@
 
 				});
 			</script>
-			<!---->
+			<!--
 			<div class="product-middle">
 				<div class="fit-top">
 					<h6 class="shop-top">Shop thời trang</h6>
@@ -69,7 +69,7 @@
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<!---->
+			-->
 		</div>
 		@yield('content2')
 	</div>

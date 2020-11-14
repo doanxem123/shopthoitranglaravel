@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 //--frontend--
 
+//Home + Account
 Route::get('/','HomeController@index' );
 Route::get('/trang-chu','HomeController@index' );
+Route::get('/login','HomeController@login');
+Route::post('/check-login','HomeController@check_login');
+Route::post('/sign-up','HomeController@sign_up');
+Route::get('/account','HomeController@account');
+Route::get('/logout','HomeController@logout');	
+Route::post('/update-account','HomeController@update_account');
 
 //Filter
 Route::get('/show-filter-product/category={category_id}&brand={brand_id}','FilterController@show_filter_product' );
@@ -30,13 +37,19 @@ Route::get('/product/id={product_id}','ProductController@details_product' );
 Route::get('/show-cart','CartController@show_cart' );
 Route::post('/save-cart','CartController@save_cart');
 Route::get('/update-cart/rowId={rowId}&qty={qty}','CartController@update_cart');
+Route::post('/check-discount','CartController@check_discount');
+
+//Checkout
+Route::get('/show-checkout','CheckoutController@show_checkout');
+Route::get('/finish-checkout','CheckoutController@finish_checkout');
+Route::post('/send-checkout','CheckoutController@send_checkout');
 
 
 
 //--backend--
 Route::get('/admin','AdminController@index' );
 Route::get('/dashboard','AdminController@showdashboard' );
-Route::get('/logout','AdminController@logout' );
+//Route::get('/logout','AdminController@logout' );
 Route::post('/admin-dashboard','AdminController@dashboard' );
 
 //Category Product

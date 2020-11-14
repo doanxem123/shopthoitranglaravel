@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Session;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\Redirect;
 use Cart;
+use Session;
+
 session_start();
 class CartController extends Controller
 {
@@ -40,16 +41,15 @@ class CartController extends Controller
         $data['options']['size'] = $product_size;
         $data['options']['more_size'] = $more_size;
 
-        $check = false;     //check duplicate
         
         foreach($list as $item){
             if($details_product_id == $item->id){
                 return Redirect::to('/update-cart/rowId='.$item->rowId.'&qty='.$product_quantity);
             }
         }
+
         Cart::add($data);
-        
-        return Redirect::to('/show-cart');
+        return Redirect::to(url()->previous());
         
         // $list=Cart::Content();
         // echo '<pre>';
@@ -68,18 +68,30 @@ class CartController extends Controller
         if($qty == 'delete'){
             Cart::update($rowId,0);
         }
-        else if($qty == 'all'){
+        else if($qty == 'deleteall'){
             Cart::destroy();
+            return Redirect::to(url()->previous());
         }
         else{
             Cart::update($rowId,Cart::Content()[$rowId]->qty+$qty);
         }
-        return Redirect::to('/show-cart');
+        return Redirect::to(url()->previous());
+        //return Redirect::to('/show-cart');
     }
 
-    public function delete_cart($rowId){
-        if($rowId == 'all'){
-            Cart::destroy();
+    public function check_discount(Request $request){
+        $discount=DB::table('tbl_discount')->where('discount_code',$request->discount_code)->where('discount_status',1)->first();
+        if($discount){
+            Cart::setGlobalDiscount($discount->discount_rate);
+            Session::put('discount_code',$discount->discount_code);
+            Session::put('discount_rate',$discount->discount_rate);
+            Session::put('discount_message','Đã áp dụng mã giảm giá '.$discount->discount_code.' ( - '.$discount->discount_rate.'% )');
+        }
+        else{
+            Cart::setGlobalDiscount(0);
+            Session::put('discount_code',null);
+            Session::put('discount_rate',null);
+            Session::put('discount_message','Mã giảm giá không có hiệu lực hoặc hết hạn');
         }
         return Redirect::to('/show-cart');
     }

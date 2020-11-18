@@ -10,8 +10,18 @@ $list = Cart::content();
 		<h1>
             Thông tin đặt hàng
         </h1>
+
         <div class="contact-form">
             <div class="col-md-8 contact-grid">
+                @if($account == null)
+                <div>
+                    <span>
+                        <a href="{{URL::to('/login')}}">Đăng nhập hoặc đăng ký</a>
+                         để tích điểm và lưu thông tin đặt hàng </span>
+                    <br>
+                    <br>
+                </div>
+                @endif
                 <form id="form_checkout" action="{{ URL::to('/send-checkout') }}" method="POST">
                     {{ csrf_field() }}
                     @if($account)

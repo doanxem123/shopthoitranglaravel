@@ -14,7 +14,6 @@ if($discount_code != null && $discount_rate != null){
 	<div class="check">	 
 		<h1>Giỏ hàng của bạn ( {{count($list)}} )</h1>
 		<div class="col-md-8 cart-items">
-
 			@foreach($list as $item)
 			<script>$(document).ready(function(c) {
 				$('.close1').on('click', function(c){
@@ -109,7 +108,11 @@ if($discount_code != null && $discount_rate != null){
 			</ul>
 
 			<div class="clearfix"></div>
+			@if($list->count()>0)
 			<a class="order" href="{{URL::to('/show-checkout')}}">Đặt hàng</a>
+			@else
+			<a class="order" href="#">Bạn cần đặt sản phẩm vào giỏ hàng</a>
+			@endif
 			<form id="form1" action="{{URL::to('/check-discount')}}" method="POST">
 				{{ csrf_field() }}
 				<div class="total-item">

@@ -11,6 +11,9 @@ if($account){
     $tax = (int) ($tax)*(-1);
     Cart::setGlobalTax($tax);
 }
+else{
+    Cart::setGlobalTax(0);
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,7 @@ if($account){
     <script type="text/javascript" src="{{asset('public/frontend/js/memenu.js')}}"></script>
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
     <script src="{{asset('public/frontend/js/simpleCart.min.js')}}"> </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <!--header-->
@@ -51,9 +55,9 @@ if($account){
                 <div class="header-left">       
                     <ul>
                         @if($account)
-                        <li style="color:white"><a href="{{URL::to('/account')}}">{{$account->permission_name}} : {{$account->account_account}}</a></li>
+                        <li style="color:white"><a href="{{URL::to('/invoice')}}">{{$account->permission_name}} : {{$account->account_account}}</a></li>
                         <p>
-                            <span><a href="{{URL::to('/account')}}">Cài đặt </a></span>
+                            <span><a href="{{URL::to('/settings')}}">Cài đặt </a></span>
                             <span>&nbsp;</span>
                             <span style="float:right;padding-right: 30px"><a href="{{URL::to('/logout')}}"> Đăng xuất</a></span>
                         </p>
@@ -126,6 +130,9 @@ if($account){
                             </div>
                         </div>
                     </li>
+                    <li class="grid"><a class="color3" href="{{URL::to('/invoice')}}">Tìm đơn hàng</a>
+                        </div>
+                    </li>
                 </ul> 
             </div>
 
@@ -160,7 +167,7 @@ if($account){
         </div>
     </div>
     <div class="footer-class">
-        <p >© Nguyễn Quang Anh - Vũ Trung Kiên - Hồ Thu Phương</p>
+        <p >© Nguyễn Quang Anh - Vũ Trung Kiên - Phạm Thu Hương</p>
     </div>
 </div>
 </body>

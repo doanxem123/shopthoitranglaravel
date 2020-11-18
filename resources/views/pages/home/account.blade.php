@@ -6,37 +6,49 @@ if($account){
 	$account_name = $account->account_name;
 }
 ?>
-<!--content-->
 <div class="contact">
 	<div class="container">
-		<h1>Thông tin người dùng</h1>
-		<div class="contact-form">
-			<div class="col-md-8 contact-grid">
-				<form id="form1" action="{{URL::to('/update-account')}}" method="POST">
-					{{ csrf_field() }}
-					<b>Tên tài khoản : </b>
-					<input type="text" value="{{$account->account_account}}" readonly>
-					<b>Loại khách hàng : </b>
-					<input type="text" value="{{$account->permission_name}}" readonly>
-					<b>Họ và tên : </b>
-					<input type="text" name="account_name_update" value="{{$account->account_name}}" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='{{$account->account_name}}';}">
-					<b>Số điện thoại : </b>
-					<input type="text" name="account_phone_update" value="{{$account->account_phone}}" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='{{$account->account_phone}}';}">
-					<b>Email : </b>
-					<input type="text" name="account_email_update" value="{{$account->account_email}}" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='{{$account->account_email}}';}">
-					<b>Địa chỉ :</b>
-					<input type="text" name="account_address_update" value="{{$account->account_address}}" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='{{$account->account_address}}';}">
-					<div class="send">
-						<input type="submit" value="Update">
-					</div>
-				</form>
-				<div class="clearfix"></div>
-				<br>
-			</div>
-			<div class="col-md-4 contact-in">
-				<div class="clearfix"> </div>
-			</div>
-		</div>
+		<h1>Thông tin đơn hàng</h1>
+		<br>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">STT</th>
+					<th scope="col">Mã đơn hàng</th>
+					<th scope="col">Họ và tên</th>
+					<th scope="col">Số điện thoại</th>
+					<th scope="col">Email</th>
+					<th scope="col">Địa chỉ</th>
+					<th scope="col">Tổng tiền</th>
+					<th scope="col">Ngày tạo</th>
+					<th scope="col">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				$dem=1;
+				?>
+				@foreach($invoice as $key => $item)
+				<tr>
+					<th scope="row">{{$dem++}}</th>
+					<td>
+						<a href="#">
+							{{$item->invoice_id}}
+						</a>
+					</td>
+					<td>{{$item->invoice_account_name}}</td>
+					<td>{{$item->invoice_account_phone}}</td>
+					<td>{{$item->invoice_account_email}}</td>
+					<td>{{$item->invoice_account_address}}</td>
+					<td>{{$item->invoice_total}}</td>
+					<td>{{$item->created_at}}</td>
+					<td>@mdo</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
-	<!--//content-->
-	@endsection
+</div>
+
+
+@endsection

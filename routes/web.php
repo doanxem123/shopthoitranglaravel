@@ -20,15 +20,20 @@ Route::get('/trang-chu','HomeController@index' );
 Route::get('/login','HomeController@login');
 Route::post('/check-login','HomeController@check_login');
 Route::post('/sign-up','HomeController@sign_up');
-Route::get('/account','HomeController@account');
+Route::get('/settings','HomeController@settings');
 Route::get('/logout','HomeController@logout');	
 Route::post('/update-account','HomeController@update_account');
+
+//Error
+Route::get('/errorsignin','ErrorController@errorsignin');	
+Route::get('/errorcart','ErrorController@errorcart');	
 
 //Filter
 Route::get('/show-filter-product/category={category_id}&brand={brand_id}','FilterController@show_filter_product' );
 
 Route::post('/show-filter-product/search','FilterController@search_product' );
 Route::get('/show-filter-product/search','FilterController@search_product' );
+
 
 //Product
 Route::get('/product/id={product_id}','ProductController@details_product' );
@@ -44,12 +49,19 @@ Route::get('/show-checkout','CheckoutController@show_checkout');
 Route::get('/finish-checkout','CheckoutController@finish_checkout');
 Route::post('/send-checkout','CheckoutController@send_checkout');
 
+//Invoice
+Route::get('/invoice','InvoiceController@invoice');
+Route::get('/details-invoice/id={invoice_id}','InvoiceController@details_invoice');
+Route::get('/show-filter-invoice','InvoiceController@filter_invoice');
+Route::post('/show-filter-invoice','InvoiceController@filter_invoice');
+Route::post('/update-invoice/id={invoice_id}&status={send_status}','InvoiceController@update_invoice');
+
 
 
 //--backend--
 Route::get('/admin','AdminController@index' );
 Route::get('/dashboard','AdminController@showdashboard' );
-//Route::get('/logout','AdminController@logout' );
+Route::get('/logoutAdmin','AdminController@logout' );
 Route::post('/admin-dashboard','AdminController@dashboard' );
 
 //Category Product

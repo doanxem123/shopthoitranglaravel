@@ -15,9 +15,14 @@ session_start();
 class CheckoutController extends Controller
 {
     public function show_checkout(){
+        if(Cart::content()->count()>0){
     	$category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
     	$brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
     	return view('pages.checkout.show_checkout')->with('category',$category_product)->with('brand',$brand_product);
+    }
+    else{
+        return Redirect::to('/errorcart');
+    }
     }
 
     public function send_checkout(Request $request){
@@ -27,14 +32,17 @@ class CheckoutController extends Controller
 
         if($account == null){       //Mã của khách vãng lai
             $data_add['account_id']=2;
-            $data_add['permission_id']=9;
+            $data_add['invoice_permission_id']=9;
         }
         else{
             $data_add['account_id']=$account->account_id;
-            $data_add['permission_id']=$account->permission_id;
+            $data_add['invoice_permission_id']=$account->permission_id;
         }
         if(Session::get('discount_code')){
-            $data_add['discount_code']=Session::get('discount_code');
+            $data_add['discount_id']=DB::table('tbl_discount')->where('discount_code',Session::get('discount_code'))->where('discount_status',1)->first()->discount_id;
+        }
+        else{
+             $data_add['discount_id']=0;
         }
 
         $data_add['invoice_account_name']=$request->account_name;
@@ -43,7 +51,7 @@ class CheckoutController extends Controller
         $data_add['invoice_account_address']=$request->account_address;
         $data_add['invoice_note']=$request->invoice_note;
         $data_add['invoice_total'] = Cart::totalFloat();
-        $data_add['invoice_status'] = 1;
+        $data_add['invoice_status'] = 0;
         $data_add['created_at']=Carbon::now();
         $data_add['updated_at']=Carbon::now();
 
@@ -56,7 +64,7 @@ class CheckoutController extends Controller
             $data_add_details['invoice_id']=$last_invoice->invoice_id;
             $data_add_details['details_product_id']=$item->id;
             $data_add_details['details_invoice_quantity']=$item->qty;
-            $data_add_details['details_invoice_price']=$item->price;
+            $data_add_details['details_invoice_price']=$item->price*$item->qty;
             $data_add_details['details_invoice_status']=1;
             $data_add_details['created_at']=Carbon::now();
             $data_add_details['updated_at']=Carbon::now();

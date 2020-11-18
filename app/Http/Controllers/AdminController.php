@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     
     public function index() {
-    	return view('admin_login');
+    	return Redirect::to('/login');
     }
 
     public function showdashboard() {
@@ -25,9 +25,9 @@ class AdminController extends Controller
 
     public function dashboard(Request $request) {
         $admin_email = $request->admin_email;
-        $admin_password = md5($request->admin_password);
+        $account_password = md5($request->admin_password);
 
-        $result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
+        $result = DB::table('tbl_account')->where('account_account',$admin_email)->where('account_password',$account_password)->first();
         if($result){
             Session::put('admin_name',$result->admin_name);
             Session::put('admin_id',$result->admin_id);

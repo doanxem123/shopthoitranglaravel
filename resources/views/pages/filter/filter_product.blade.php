@@ -10,7 +10,7 @@
 		@foreach($filter as $key => $item)
 		<div class="col-md-4 bottom-cd simpleCart_shelfItem">
 			<div class="product-at">
-				<a href="{{URL::to('/product/id='.$item->product_id)}}"><img class="img-responsive" src="{{URL::to('public/frontend/images/demo/'.$item->product_image)}}" alt="" style="height: 255px;width:255px">
+				<a href="{{URL::to('/product/id='.$item->product_id)}}"><img class="img-responsive" src="{{URL::to('public/frontend/images/demo/'.$item->images_URL)}}" alt="" style="height: 255px;width:255px">
 					<div class="pro-grid">
 						<span class="buy-in">Xem Sản Phẩm</span>
 					</div>

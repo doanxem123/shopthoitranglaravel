@@ -3,10 +3,16 @@
 <head>
 	<!-- Kiểm soát quyền quản trị -->
 	<?php
-	$admin_id = Session::get('admin_id');
-	if(!$admin_id){
-		return Redirect::to('admin')->send();
+	if(Session::get('account')){
+		$admin = Session::get('account');
+		if($admin->permission_id!=1){
+			return Redirect::to('/login');
+		}
 	}
+	else{
+		return Redirect::to('/login');
+	}
+
 	?>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -80,13 +86,7 @@
 							<img class="nav-user-photo" src="<?php echo e(asset('public/backend/images/avatars/user.jpg')); ?>" alt="Jason's Photo" />
 							<span class="user-info">
 								<small>Chào mừng,</small>
-								<?php
-								$admin_name = Session::get('admin_name');
-								if($admin_name){
-									echo '<span>',$admin_name,'</span>';
-									Session::put('admin_name',null);
-								}
-								?>
+								<span><?php echo e($admin->account_name); ?></span>
 							</span>
 
 							<i class="ace-icon fa fa-caret-down"></i>

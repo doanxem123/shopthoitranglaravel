@@ -94,15 +94,6 @@
     </div>
     <!---->
     <div class="content-bottom">
-        <ul>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo.png')}}" alt=""></li>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo1.png')}}" alt=""></li>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo2.png')}}" alt=""></li>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo3.png')}}" alt=""></li>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo4.png')}}" alt=""></li>
-            <li><img class="img-responsive" src="{{('public/frontend/images/lo5.png')}}" alt=""></li>
-        <div class="clearfix"> </div>
-        </ul>
     </div>
 </div>
 @endsection

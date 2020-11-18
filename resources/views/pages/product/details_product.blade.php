@@ -60,12 +60,18 @@
 				<input name="page" type="hidden" value="next"/>
 				<a href="#" class="add-cart item_add" onclick="document.getElementById('form1').submit()">Thêm vào giỏ hàng
 				</a>
+
 			</form>
 		</div>
 	</div>
 	<div class="clearfix"> </div>
 	<!---->
-
+	<div>
+		<h3>Giới thiệu sản phẩm :</h3>
+		<div>
+			Quần nike được phát triển vào năm 2015
+		</div>
+	</div>
 </div>
 @endforeach
 @endsection

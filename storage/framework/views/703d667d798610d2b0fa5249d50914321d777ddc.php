@@ -11,6 +11,9 @@ if($account){
     $tax = (int) ($tax)*(-1);
     Cart::setGlobalTax($tax);
 }
+else{
+    Cart::setGlobalTax(0);
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,7 @@ if($account){
     <script type="text/javascript" src="<?php echo e(asset('public/frontend/js/memenu.js')); ?>"></script>
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
     <script src="<?php echo e(asset('public/frontend/js/simpleCart.min.js')); ?>"> </script>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 </head>
 <body>
     <!--header-->
@@ -52,9 +56,9 @@ if($account){
                 <div class="header-left">       
                     <ul>
                         <?php if($account): ?>
-                        <li style="color:white"><a href="<?php echo e(URL::to('/account')); ?>"><?php echo e($account->permission_name); ?> : <?php echo e($account->account_account); ?></a></li>
+                        <li style="color:white"><a href="<?php echo e(URL::to('/invoice')); ?>"><?php echo e($account->permission_name); ?> : <?php echo e($account->account_account); ?></a></li>
                         <p>
-                            <span><a href="<?php echo e(URL::to('/account')); ?>">Cài đặt </a></span>
+                            <span><a href="<?php echo e(URL::to('/settings')); ?>">Cài đặt </a></span>
                             <span>&nbsp;</span>
                             <span style="float:right;padding-right: 30px"><a href="<?php echo e(URL::to('/logout')); ?>"> Đăng xuất</a></span>
                         </p>
@@ -127,6 +131,9 @@ if($account){
                             </div>
                         </div>
                     </li>
+                    <li class="grid"><a class="color3" href="<?php echo e(URL::to('/invoice')); ?>">Tìm đơn hàng</a>
+                        </div>
+                    </li>
                 </ul> 
             </div>
 
@@ -161,7 +168,7 @@ if($account){
         </div>
     </div>
     <div class="footer-class">
-        <p >© Nguyễn Quang Anh - Vũ Trung Kiên - Hồ Thu Phương</p>
+        <p >© Nguyễn Quang Anh - Vũ Trung Kiên - Phạm Thu Hương</p>
     </div>
 </div>
 </body>

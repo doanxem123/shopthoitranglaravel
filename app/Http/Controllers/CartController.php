@@ -17,9 +17,11 @@ class CartController extends Controller
     	$product_id = $request->product_id_hidden;
     	$product_quantity = $request->product_quantity;
     	$product_size = $request->size_select;
-    	$product_info = DB::table('tbl_product')->where('product_id',$product_id)->first();
+    	//$product_info = DB::table('tbl_product')->where('product_id',$product_id)->first();
+
+        $product_info = DB::table('tbl_product')->select('tbl_product.product_id','images_id','product_name','product_price','images_URL',DB::raw("COUNT('product_id') AS product_count"))->join('tbl_images_product', 'tbl_product.product_id', '=', 'tbl_images_product.product_id')->orderBy('product_count', 'desc')->groupBy('tbl_product.product_id')->where('tbl_product.product_id',$product_id)->where('product_status','1')->first();
+
         $query =  DB::table('tbl_details_product')->join('tbl_size_product','tbl_size_product.size_id','=','tbl_details_product.size_id')->join('tbl_product','tbl_product.product_id','=','tbl_details_product.product_id');
-        $more_size=$query->where('tbl_details_product.product_id',$product_id)->get();
         //print_r($size);
         $list = Cart::content();
 
@@ -37,9 +39,8 @@ class CartController extends Controller
         $data['qty'] = $product_quantity;	//qty = quantity
         $data['price'] = $product_info->product_price;
         $data['weight'] = 0;
-        $data['options']['image'] = $product_info->product_image;
+        $data['options']['image'] = $product_info->images_URL;
         $data['options']['size'] = $product_size;
-        $data['options']['more_size'] = $more_size;
 
         
         foreach($list as $item){

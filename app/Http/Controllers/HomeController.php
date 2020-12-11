@@ -14,7 +14,9 @@ class HomeController extends Controller
 	public function index(){
 		$category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
 		$brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
-		return view('pages.home.home')->with('category',$category_product)->with('brand',$brand_product);
+		$sales = DB::table('tbl_sales')->where('sales_status','1')->orderby('sales_id','desc')->get();
+
+		return view('pages.home.home')->with('category',$category_product)->with('brand',$brand_product)->with('sales',$sales);
 	}
 
 	public function login(){
@@ -70,17 +72,17 @@ class HomeController extends Controller
 	}
 
 	public function settings(){
+		$category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
+		$brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
+		$sales = DB::table('tbl_sales')->where('sales_status','1')->orderby('sales_id','desc')->get();
 		if(Session::get('account')){
-			$category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
-			$brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
-
 			$result = DB::table('tbl_account')->join('tbl_permission','tbl_account.permission_id','=','tbl_permission.permission_id')->where('account_id',Session::get('account')->account_id)->first();
 			Session::put('account',$result);
 
-			return view('pages.home.settings')->with('category',$category_product)->with('brand',$brand_product);
+			return view('pages.home.settings')->with('category',$category_product)->with('brand',$brand_product)->with('sales',$sales);
 		}
 		else{
-			return Redirect::to('/errorsignin');
+			return view('pages.error.errorsignin')->with('category',$category_product)->with('brand',$brand_product)->with('sales',$sales);
 		}
 	}
 

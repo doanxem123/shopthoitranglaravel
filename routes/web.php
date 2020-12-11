@@ -24,16 +24,11 @@ Route::get('/settings','HomeController@settings');
 Route::get('/logout','HomeController@logout');	
 Route::post('/update-account','HomeController@update_account');
 
-//Error
-Route::get('/errorsignin','ErrorController@errorsignin');	
-Route::get('/errorcart','ErrorController@errorcart');	
-
 //Filter
 Route::get('/show-filter-product/category={category_id}&brand={brand_id}','FilterController@show_filter_product' );
-
-Route::post('/show-filter-product/search','FilterController@search_product' );
-Route::get('/show-filter-product/search','FilterController@search_product' );
-
+Route::post('/show-filter-product/category={category_id}&brand={brand_id}','FilterController@show_filter_product' );
+Route::post('/show-filter-product/search={search_keywords}','FilterController@search_product' );
+Route::get('/show-filter-product/search={search_keywords}','FilterController@search_product' );
 
 //Product
 Route::get('/product/id={product_id}','ProductController@details_product' );
@@ -54,8 +49,9 @@ Route::get('/invoice','InvoiceController@invoice');
 Route::get('/details-invoice/id={invoice_id}','InvoiceController@details_invoice');
 Route::get('/show-filter-invoice','InvoiceController@filter_invoice');
 Route::post('/show-filter-invoice','InvoiceController@filter_invoice');
+Route::get('/update-invoice/id={invoice_id}&status={send_status}','InvoiceController@update_invoice');
 Route::post('/update-invoice/id={invoice_id}&status={send_status}','InvoiceController@update_invoice');
-
+Route::post('/checkbox-ajax','InvoiceController@checkbox_ajax');
 
 
 //--backend--

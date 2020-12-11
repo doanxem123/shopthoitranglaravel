@@ -1,14 +1,26 @@
 @extends('layout')
 @section('content')
 <?php
+//Session::put('discount_1',null);
 $account = Session::get('account');
 $list = Cart::content();
-$discount_code = Session::get('discount_code');
-$discount_rate = Session::get('discount_rate');
 $discount_message = Session::get('discount_message');
-if($discount_code != null && $discount_rate != null){
-	$discount_rate = '( - '.$discount_rate.' % )';
+$sum_discount=0;
+if(Session::get('discount_1')){
+	$discount = Session::get('discount_1');
+	foreach($discount as $item){
+		$sum_discount+=$item->discount_rate;
+	}
+	//
+	if($sum_discount>100){
+		$sum_discount=100;
+	}
+	Cart::setGlobalDiscount($sum_discount);
 }
+else{
+	Cart::setGlobalDiscount(0);
+}
+
 ?>
 <div class="container">
 	<div class="check">	 
@@ -30,34 +42,49 @@ if($discount_code != null && $discount_rate != null){
 			</a>
 			<div class="cart-sec simpleCart_shelfItem">
 				<div class="cart-item cyc">
-					<a href="{{URL::to('/product/id='.$item->id)}}">
-						<img src="{{URL::to('public/frontend/images/demo/'.$item->options->image)}}" class="img-responsive" alt=""/></a>
+					<a href="{{URL::to('/product/id='.$item->options->product_id)}}">
+						<img src="{{URL::to('public/frontend/images/product/'.$item->options->image)}}" class="img-responsive" alt=""/></a>
 					</div>
 					<div class="cart-item-info">
-						<h3><a href="{{URL::to('/product/id='.$item->id)}}">{{$item->name}}</a></h3>
+						<h3><a href="{{URL::to('/product/id='.$item->options->product_id)}}">{{$item->name}}</a></h3>
 						<ul class="qty">
 							<li>Size : {{$item->options->size}}
 							</li>
 							<li>
+								
 								<span>
-									Số lượng : {{$item->qty}}    
+									Số lượng : {{$item->qty}}
 								</span>
+
 								<span>&nbsp;</span>
+
 								<span style="float:right">
+									@if($item->qty > 1)
 									<span style="float:left">
 										<a class="cpns" href="{{URL::to('/update-cart/rowId='.$item->rowId.'&qty=-1')}}" style="text-decoration: none;">
 											<span> - </span>
 										</a>
 									</span> 
+									@endif
 									<span>&nbsp;</span>
+									@if($item->qty < $item->options->max_quantity)
 									<span style="float:right">
 										<a class="cpns" href="{{URL::to('/update-cart/rowId='.$item->rowId.'&qty=1')}}" style="text-decoration: none;">
 											<span> + </span>
 										</a>
 									</span>
+									@endif
 								</span>
 							</li>
+							<li>
+								<span>Còn {{$item->options->max_quantity}} chiếc</span>
+							</li>
 						</ul>
+						@if($item->options->sale != 0)
+						<div class="clearfix"></div>
+						<br>
+						<span>Khuyến mãi : - {{$item->options->sale}} % ( Giá gốc : {{number_format($item->price/(1-$item->options->sale/100)).' VND )'}}</span>
+						@endif
 						<div class="clearfix"></div>
 						<br>
 						<span style="font-size: 20px">Đơn giá : {{number_format($item->price).' VND'}}</span>
@@ -70,31 +97,40 @@ if($discount_code != null && $discount_rate != null){
 		</div>
 		<div class="col-md-4 cart-total">
 			<div class="price-details">
+				<?php
+				$sum = 0;
+				foreach($list as $item){
+					$sum+=$item->price/(1-$item->options->sale/100)*$item->qty;
+				}
+				?>
 				<h3>Thông tin giỏ hàng</h3>
-				<span>Tổng tiền : </span>
-				<span class="total1">{{Cart::priceTotal().' VND'}}</span>
+				<span>Giá niêm yết : </span>
+				<span class="total1">{{number_format($sum,2,'.',',').' VND'}}</span>
+				<span>Khuyến mãi : </span>
+				<span class="total1">{{'-'.number_format($sum-Cart::priceTotalFloat(),2,'.',',').' VND'}}</span>
+
+				@if(Session::get('discount_1'))
 				<span>
-					Giảm giá {{$discount_rate}} :
+					Mã giảm giá ( {{$sum_discount}} % ) :
 				</span>
-				@if($discount_code != null && $discount_rate != null)
 				<span class="total1">
 					-{{Cart::Discount().' VND'}} 
 				</span>
+				@foreach($discount as $item1)
 				<span>
-					Mã voucher : {{$discount_code}}
+					Mã voucher : {{$item1->discount_code}} ( {{$item1->discount_rate}} % )
 				</span>
 				<span>
 					<a href="#" onclick="document.getElementById('form2').submit()" >Xoá mã voucher</a>
 					<form id="form2" action="{{URL::to('/check-discount')}}" method="POST">
 						{{ csrf_field() }}
-						<input name="discount_code" type="hidden" value=""/>
+						<input name="discount_code" type="hidden" value="{{$item1->discount_code}}"/>
+						<input name="code" type="hidden" value="0"/>
 					</form>
 				</span>
-				@else
-				<span class="total1">
-					{{Cart::Discount().' VND'}}
-				</span>
+				@endforeach
 				@endif
+
 				@if($account)
 				<span>{{$account->permission_name}} ( - {{$account->permission_rate}} % ) : </span>
 				<span class="total1">{{Cart::Tax().' VND'}}</span>
@@ -117,7 +153,7 @@ if($discount_code != null && $discount_rate != null){
 				{{ csrf_field() }}
 				<div class="total-item">
 					<h3>Mã giảm giá </h3>
-					<input name="discount_code" type="text" value="{{$discount_code}}"/>
+					<input name="discount_code" type="text" value=""/>
 					<br>
 					<p>{{$discount_message}}</p>
 					<br>

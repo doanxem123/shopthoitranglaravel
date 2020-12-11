@@ -133,10 +133,11 @@ class ProductController extends Controller
     public function details_product($product_id){
         $category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
-        $product = DB::table('tbl_product')->where('product_id',$product_id)->where('product_status','1')->get();
+        $sales = DB::table('tbl_sales')->where('sales_status','1')->orderby('sales_id','desc')->get();
+        $product = DB::table('tbl_product')->join('tbl_sales','tbl_product.sales_id','=','tbl_sales.sales_id')->where('product_id',$product_id)->where('product_status','1')->get();
         $images = DB::table('tbl_images_product')->where('product_id',$product_id)->where('images_status','1')->orderby('product_id','desc')->get();
-        $size=DB::table('tbl_details_product')->join('tbl_size_product','tbl_size_product.size_id','=','tbl_details_product.size_id')->where('product_id',$product_id)->get();
+        $details_product=DB::table('tbl_details_product')->join('tbl_size_product','tbl_size_product.size_id','=','tbl_details_product.size_id')->where('product_id',$product_id)->get();
 
-        return view('pages.product.details_product')->with('category',$category_product)->with('brand',$brand_product)->with('product',$product)->with('images',$images)->with('size',$size);
+        return view('pages.product.details_product')->with('category',$category_product)->with('brand',$brand_product)->with('product',$product)->with('images',$images)->with('details_product',$details_product)->with('sales',$sales);
     }
 }

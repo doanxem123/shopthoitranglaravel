@@ -45,13 +45,16 @@ else{
     <div class="header">
         <div class="header-top">
             <div class="container">
-                <div class="search">
-                    <form action="{{URL::to('/show-filter-product/search')}}" method="POST">
-                        {{csrf_field()}}
-                        <input type="text" name="search_keywords" placeholder="Tìm kiếm sản phẩm">
-                        <input type="submit" value="Tìm kiếm">
-                    </form>
+                <div class="search1">
+                    <input style="float:left" id="txtSearch" type="text" name="search_keywords" placeholder="Tìm kiếm sản phẩm...">
+                    <button  style="float:left" id="btnSearch" type="button" onclick="BeforeSearch()">Tìm kiếm</button>
                 </div>
+                <script>
+                    function BeforeSearch(){
+                        var search = document.getElementById('txtSearch').value;
+                        location.replace("{{URL::to('/show-filter-product/search')}}="+search);
+                    }
+                </script>
                 <div class="header-left">       
                     <ul>
                         @if($account)
@@ -103,7 +106,7 @@ else{
                       <li class="grid"><a class="color1" href="#">Danh mục</a>
                         <div class="mepanel" style="width: 250px;margin-left:100px">
                             <div class="row">
-                                <div class="col1">
+                                <div class="col3">
                                     <div class="h_nav">
                                         <ul>
                                             @foreach($category as $key => $item)
@@ -118,7 +121,7 @@ else{
                     <li class="grid"><a class="color2" href="#">Thương hiệu</a>
                         <div class="mepanel" style="width: 250px;margin-left:250px">
                             <div class="row">
-                                <div class="col1">
+                                <div class="col3">
                                     <div class="h_nav">
                                         <ul>
                                             @foreach($brand as $key => $item)
@@ -130,8 +133,33 @@ else{
                             </div>
                         </div>
                     </li>
-                    <li class="grid"><a class="color3" href="{{URL::to('/invoice')}}">Tìm đơn hàng</a>
+                    <li class="grid"><a class="color3" href="#">Sale</a>
+                        <div class="mepanel" style="width: 250px;margin-left:350px">
+                            <div class="row">
+                                <div class="col3">
+                                    <div class="h_nav">
+                                        <ul>
+                                            @foreach($sales as $key => $item)
+                                            <li><a href="#" onclick="BeforeHref({{$item->sales_id}})">{{$item->sales_name}}</a></li>
+                                            @endforeach
+                                            <form id="formSales1" action="{{URL::to('/show-filter-product/category=all&brand=all')}}">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" id="sales_hidden1" name="sales_id" />
+                                            </form>
+                                        </ul>   
+                                    </div>                          
+                                </div>
+                            </div>
                         </div>
+                    </li>
+                    <script>
+                        function BeforeHref(id){
+                            document.getElementById("sales_hidden1").setAttribute("value",id);
+                            document.getElementById('formSales1').submit();
+                        }
+                    </script>
+                    <li class="grid"><a class="color4" href="{{URL::to('/invoice')}}">Tìm đơn hàng</a>
+
                     </li>
                 </ul> 
             </div>

@@ -45,14 +45,16 @@ else{
     <div class="header">
         <div class="header-top">
             <div class="container">
-                <div class="search">
-                    <form action="<?php echo e(URL::to('/show-filter-product/search')); ?>" method="POST">
-                        <?php echo e(csrf_field()); ?>
-
-                        <input type="text" name="search_keywords" placeholder="Tìm kiếm sản phẩm">
-                        <input type="submit" value="Tìm kiếm">
-                    </form>
+                <div class="search1">
+                    <input style="float:left" id="txtSearch" type="text" name="search_keywords" placeholder="Tìm kiếm sản phẩm...">
+                    <button  style="float:left" id="btnSearch" type="button" onclick="BeforeSearch()">Tìm kiếm</button>
                 </div>
+                <script>
+                    function BeforeSearch(){
+                        var search = document.getElementById('txtSearch').value;
+                        location.replace("<?php echo e(URL::to('/show-filter-product/search')); ?>="+search);
+                    }
+                </script>
                 <div class="header-left">       
                     <ul>
                         <?php if($account): ?>
@@ -104,7 +106,7 @@ else{
                       <li class="grid"><a class="color1" href="#">Danh mục</a>
                         <div class="mepanel" style="width: 250px;margin-left:100px">
                             <div class="row">
-                                <div class="col1">
+                                <div class="col3">
                                     <div class="h_nav">
                                         <ul>
                                             <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -119,7 +121,7 @@ else{
                     <li class="grid"><a class="color2" href="#">Thương hiệu</a>
                         <div class="mepanel" style="width: 250px;margin-left:250px">
                             <div class="row">
-                                <div class="col1">
+                                <div class="col3">
                                     <div class="h_nav">
                                         <ul>
                                             <?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -131,8 +133,34 @@ else{
                             </div>
                         </div>
                     </li>
-                    <li class="grid"><a class="color3" href="<?php echo e(URL::to('/invoice')); ?>">Tìm đơn hàng</a>
+                    <li class="grid"><a class="color3" href="#">Sale</a>
+                        <div class="mepanel" style="width: 250px;margin-left:350px">
+                            <div class="row">
+                                <div class="col3">
+                                    <div class="h_nav">
+                                        <ul>
+                                            <?php $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li><a href="#" onclick="BeforeHref(<?php echo e($item->sales_id); ?>)"><?php echo e($item->sales_name); ?></a></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <form id="formSales1" action="<?php echo e(URL::to('/show-filter-product/category=all&brand=all')); ?>">
+                                                <?php echo e(csrf_field()); ?>
+
+                                                <input type="hidden" id="sales_hidden1" name="sales_id" />
+                                            </form>
+                                        </ul>   
+                                    </div>                          
+                                </div>
+                            </div>
                         </div>
+                    </li>
+                    <script>
+                        function BeforeHref(id){
+                            document.getElementById("sales_hidden1").setAttribute("value",id);
+                            document.getElementById('formSales1').submit();
+                        }
+                    </script>
+                    <li class="grid"><a class="color4" href="<?php echo e(URL::to('/invoice')); ?>">Tìm đơn hàng</a>
+
                     </li>
                 </ul> 
             </div>

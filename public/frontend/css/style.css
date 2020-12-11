@@ -184,7 +184,6 @@ a.item_add {
 /*--banner--*/
 
 .banner{
-	background: url(../images/1.jpg) no-repeat ;
 	background-size: cover;
 	width:100%;
 	min-height: 560px;
@@ -914,7 +913,6 @@ h3.best {
 }
 /*----*/
 .product-middle{
-	background: url(../images/product1.jpg) center;
   width: 100%;
   min-height: 45px;
   display: block;

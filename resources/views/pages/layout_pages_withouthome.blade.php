@@ -41,6 +41,31 @@
 				</ul>
 			</div>
 
+			<div class=" rsidebar span_1_of_left">
+				<div class="of-left">
+					<h3 class="cate">Sale </h3>
+				</div>
+				<ul class="menu">
+					<li>
+						<a href="#" onclick="BeforeHref2(null)"/>Bỏ chọn giảm giá</a>
+					</li>
+					@foreach($sales as $key => $item)
+					<li class="item1">
+						<a href="#" onclick="BeforeHref2({{$item->sales_id}})"/>{{$item->sales_name}}</a>
+					</li>
+					@endforeach
+					<form id="formSales2" action="{{URL::current()}}" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" id="sales_hidden2" name="sales_id" />
+					</form>
+				</ul>
+			</div>
+			<script>
+				function BeforeHref2(id){
+					document.getElementById("sales_hidden2").setAttribute("value",id);
+					document.getElementById('formSales2').submit();
+				}
+			</script>
 			<!--initiate accordion-->
 			<script type="text/javascript">
 				$(function() {
@@ -69,10 +94,10 @@
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			-->
-		</div>
-		@yield('content2')
+		-->
 	</div>
+	@yield('content2')
+</div>
 </div>
 
 <!---->

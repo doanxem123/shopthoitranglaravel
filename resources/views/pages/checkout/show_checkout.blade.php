@@ -17,7 +17,7 @@ $list = Cart::content();
                 <div>
                     <span>
                         <a href="{{URL::to('/login')}}">Đăng nhập hoặc đăng ký</a>
-                         để tích điểm và lưu thông tin đặt hàng </span>
+                    để tích điểm và lưu thông tin đặt hàng </span>
                     <br>
                     <br>
                 </div>
@@ -65,9 +65,8 @@ $list = Cart::content();
                     </b>
                     <textarea name="invoice_note" cols="77" rows="6"></textarea>
                     <div id="txtThongBao" style="color:red"></div>
-                    <br>
                     <div class="send">
-                        <button type="button" id="checkout-submit">Đặt hàng</button>
+                        <button type="button" class="btn btn-info" id="checkout-submit">Đặt hàng</button>
                     </div>
                 </form>
 
@@ -85,6 +84,11 @@ $list = Cart::content();
                     <p>
                         <span>
                             Size : {{$item->options->size}} 
+                            @if($item->options->sale)
+                            <span>
+                                , KM : {{$item->options->sale}}%
+                            </span>
+                            @endif
                         </span>
                         <span style="float:right">
                             {{number_format($item->price).' VND'}}
@@ -94,6 +98,7 @@ $list = Cart::content();
                         </span>
                         <span style="float:right"> {{$item->qty}} </span>
                     </p>
+                    
                     <br>
                     @endforeach
                     <p>-----------------------------------------------------------------</p>
